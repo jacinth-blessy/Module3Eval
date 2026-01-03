@@ -2,33 +2,44 @@ import {useState} from "react";
 import {getRestaurants, savedRestaurants} from "../utils/localStorage";
 
 const AddRestaurantForm = ({refresh}) => {
-    const [form, setForm] = useState({
+    const initialState = {
         restaurantName : "",
         address : "",
         type:"",
         parkinglot: "",
         image : "https://coding-platform.s3.amazonaws.com/dev/lms/tickets/7524df6e-46fa-4506-8766-eca8da47c2f1/2izhqnTaNLdenHYF.jpeg",
-    });
+    };
+
+    const [form, setForm] = useState(initialState);
 
     const handleAdd = () => {
-        if(Object.values(form).some((v) => v === "")) {
+        if(
+            form.restaurantName.trim() === "" ||
+            form.address.trim() === "" ||
+            form.type === "" ||
+            form.parkinglot === ""
+        ) {
             alert("All fields required");
             return;
         }
-    
 
-    const confirmAdd = confirm("Addrestaurant?");
-    if(!confirmAdd) return;
+    if(!confirm("Add restaurant?")) return;
 
     const data = getRestaurants();
-    const newRestaurant = {...form, restaurantID : Date.now(),
+
+
+    const newRestaurant = { restaurantID : Date.now(),
+        restaurantName : form.restaurantName,
+        address : form.address,
+        type : form.type,
         parkinglot:form.parkinglot === "true",
+        img : form.image,
     };
 
     savedRestaurants([...data, newRestaurant]);
     alert("Restuarant Added");
     refresh();
-    setForm({...form, restaurantName :"", address : "", type : "", parkinglot: ""});
+    setForm(initialState);
 };
 
 return (

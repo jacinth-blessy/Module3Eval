@@ -4,9 +4,13 @@ const RestaurantCard = ({data, isAdmin, onDelete}) => {
     const navigate = useNavigate();
 
     return (
-        <div style = {{border : "1px solid #ccc",
-            margin : 10,
-            padding : 10
+        <div style = {{
+            width : "260px",
+            border : "1px solid #ccc",
+            borderRadius : "6px",
+            margin : "10px",
+            padding : "8px",
+            boxSizing : "border-box",
         }}>
             <img src = {data.image} alt = "" width = "200"/>
             <h3> {data.restaurantName}</h3>

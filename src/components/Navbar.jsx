@@ -21,7 +21,7 @@ const Navbar = ({ setSearch, setType, setParking}) => {
                 <option>South Indian</option>
             </select>
 
-            <select oncHange = {(e) => setParking(e.target.value)}>
+            <select onChange = {(e) => setParking(e.target.value)}>
                 <option value = "">All Parking</option>
                 <option value = "true">Parking</option>
                 <option value = "false">No Parking</option>

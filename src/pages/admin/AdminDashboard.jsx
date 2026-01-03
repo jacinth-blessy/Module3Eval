@@ -28,14 +28,18 @@ const AdminDashboard = () => {
     );
 });
 return (
-    <div style = {{display : "flex"}}>
+    <div style = {{display : "flex",
+        flexWrap : "wrap",
+        gap : "10px",
+        justifyContent : "flex-start",
+    }}>
         <div style = {{width : "25%"}}>
             <AddRestaurantForm refresh= {load} />
         </div>
         <div style = {{width : "75%"}}>
             <Navbar setSearch = {setSearch}
             setType = {setType} setParking = {setParking} />
-            {FileSystemDirectoryReader.map((r) => (
+            {filtered.map((r) => (
                 <RestaurantCard key = {r.restaurantID}
                 data = {r} isAdmin onDelete={handleDelete}/>
             ))}
