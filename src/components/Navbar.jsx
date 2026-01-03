@@ -9,7 +9,7 @@ const Navbar = ({ setSearch, setType, setParking}) => {
 
     return (
         <div style = {{padding : 10, borderBottom : "1px solid grey"}}>
-            <input ref = {inputRef} placeholder = "Search by name or address" onChange = {(e) => setType(e.target.value)} />
+            <input ref={inputRef} placeholder="Search by name or address" onChange={(e) => setSearch(e.target.value)}/>
             <select onChange = {(e) => setType(e.target.value)}>
                 <option value = "">All Types</option>
                 <option>Rajasthani</option>

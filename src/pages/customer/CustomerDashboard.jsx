@@ -1,47 +1,59 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { getRestaurants } from "../../utils/localStorage";
 import RestaurantCard from "../../components/RestaurantCard";
 import Navbar from "../../components/Navbar";
 
 const CustomerDashboard = () => {
-     const [data, setData] = useState([]);
-    const [search, setSearch] = useState("");
-    const [type, setType] = useState("");
-    const [parking, setParking] = useState("");
+  const [data, setData] = useState([]);
+  const [search, setSearch] = useState("");
+  const [type, setType] = useState("");
+  const [parking, setParking] = useState("");
 
-    useEffect(() => {
-        setData(getRestaurants());
-    }, []);
+  useEffect(() => {
+    const storedData = getRestaurants();
+    setData(storedData);
+  }, []);
 
-
-    const filtered = data.filter((r) => {
-        return ((!search || r.restaurantName.toLowerCase().includes(search.toLocaleLowerCase()) || 
-    r.address.toLowerCase().includes(search.toLocaleLowerCase())) && (!type ||r.type === type) && (!parking || r.parking === (parking === "true"))
-    );
-});
-
+  const filtered = data.filter((r) => {
     return (
-    <div>
-        <h2 style = {{ padding : "10px"}}>Customer Dashboard</h2>
-        <Navbar setSearch = {setSearch}
-        setType = {setType} setParking = {setParking} />
-        {filtered.length ===0 ? (
-            <p style = {{padding : "10px"}}>No Restaurants available</p>
-        ): (
-            <div style = {{padding : "10px",
-                display : "flex",
-            flexWeap : "wrap",
-        gap : "10px",}}>
+      (!search ||
+        r.restaurantName.toLowerCase().includes(search.toLowerCase()) ||
+        r.address.toLowerCase().includes(search.toLowerCase())) &&
+      (!type || r.type === type) &&
+      (!parking || r.parkinglot === (parking === "true"))
+    );
+  });
 
-        {filtered.map((r) => (
-            <RestaurantCard key = {r.restaurantID}
-            data = {r} isAdmin onDelete={handleDelete}/>
-        ))}
-    </div>
-        )}
+  return (
+    <div>
+      <h2 style={{ padding: "10px" }}>Customer Dashboard</h2>
+
+      <Navbar
+        setSearch={setSearch}
+        setType={setType}
+        setParking={setParking}
+      />
+
+      {filtered.length === 0 ? (
+        <p style={{ padding: "10px" }}>
+          No restaurants available
+        </p>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "10px",
+            padding: "10px",
+          }}
+        >
+          {filtered.map((r) => (
+            <RestaurantCard key={r.restaurantID} data={r} />
+          ))}
         </div>
-);
+      )}
+    </div>
+  );
 };
 
 export default CustomerDashboard;
-
