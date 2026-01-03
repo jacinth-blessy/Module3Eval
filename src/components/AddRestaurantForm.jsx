@@ -28,13 +28,15 @@ const AddRestaurantForm = ({refresh}) => {
     const data = getRestaurants();
 
 
-    const newRestaurant = { restaurantID : Date.now(),
-        restaurantName : form.restaurantName,
-        address : form.address,
-        type : form.type,
-        parkinglot:form.parkinglot === "true",
-        img : form.image,
-    };
+   const newRestaurant = {
+  restaurantID: Date.now(),
+  restaurantName: form.restaurantName,
+  address: form.address,
+  type: form.type,
+  parkinglot: form.parkinglot === "true",
+  image: form.image, 
+};
+
 
     savedRestaurants([...data, newRestaurant]);
     alert("Restuarant Added");

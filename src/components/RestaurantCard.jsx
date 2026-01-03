@@ -12,7 +12,21 @@ const RestaurantCard = ({data, isAdmin, onDelete}) => {
             padding : "8px",
             boxSizing : "border-box",
         }}>
-            <img src = {data.image} alt = "" width = "200"/>
+            <img
+                src={
+                    data.image && data.image.trim() !== ""
+                    ? data.image
+                    : "https://coding-platform.s3.amazonaws.com/dev/lms/tickets/7524df6e-46fa-4586"
+                }
+                alt={data.restaurantName}
+                style={{
+                    width: "100%",
+                    height: "140px",
+                    objectFit: "cover",
+                    borderRadius: "4px",
+                }}
+                />
+
             <h3> {data.restaurantName}</h3>
             <p>{data.address}</p>
             <p>Type : {data.type}</p>

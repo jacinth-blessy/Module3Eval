@@ -39,10 +39,23 @@ return (
         <div style = {{width : "75%"}}>
             <Navbar setSearch = {setSearch}
             setType = {setType} setParking = {setParking} />
+       <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "10px",
+            padding: "10px",
+          }}
+        >
             {filtered.map((r) => (
-                <RestaurantCard key = {r.restaurantID}
-                data = {r} isAdmin onDelete={handleDelete}/>
+                <RestaurantCard
+                key={r.restaurantID}
+                data={r}
+                isAdmin
+                onDelete={handleDelete}
+                />
             ))}
+            </div>
         </div>
     </div>
 );
