@@ -22,14 +22,24 @@ const CustomerDashboard = () => {
 
     return (
     <div>
+        <h2 style = {{ padding : "10px"}}>Customer Dashboard</h2>
         <Navbar setSearch = {setSearch}
         setType = {setType} setParking = {setParking} />
-        {FileSystemDirectoryReader.map((r) => (
+        {filtered.length ===0 ? (
+            <p style = {{padding : "10px"}}>No Restaurants available</p>
+        ): (
+            <div style = {{padding : "10px",
+                display : "flex",
+            flexWeap : "wrap",
+        gap : "10px",}}>
+
+        {filtered.map((r) => (
             <RestaurantCard key = {r.restaurantID}
             data = {r} isAdmin onDelete={handleDelete}/>
         ))}
     </div>
-
+        )}
+        </div>
 );
 };
 

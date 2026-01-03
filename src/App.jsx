@@ -17,6 +17,10 @@ function App() {
       <Route path = "/admin/restaurants/update/:id" element = {<ProtectedRoute role = "admin">
         <UpdateRestaurant />
       </ProtectedRoute>} />
+
+      <Route path = "/customers/dashboard" element = {<ProtectedRoute role = "customer">
+        <CustomerDashboard />
+      </ProtectedRoute>} />
     </Routes>
   );
 }
