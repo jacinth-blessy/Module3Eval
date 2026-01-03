@@ -16,7 +16,7 @@ const Login = () => {
 
         const role = login(email, password);
         if(role === "admin") navigate("/admin/dashboard");
-        if(role === "customer") navigate("/customer/dashboard");
+        if(role === "customer") navigate("/customers/dashboard");
     };
 
     return (
